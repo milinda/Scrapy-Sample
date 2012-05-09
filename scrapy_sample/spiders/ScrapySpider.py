@@ -12,7 +12,7 @@ class ScrapyOrgSpider(BaseSpider):
         hxs = HtmlXPathSelector(response)
 
         next_page = hxs.select("//div[@class='pagination']/a[@class='next_page']/@href").extract()
-        if not not next_page:
+        if next_page:
             yield Request(next_page[0], self.parse)
 
         posts = hxs.select("//div[@class='post']")
